@@ -48,25 +48,74 @@ table {
     flex-wrap: wrap;
     .cardContainer{
         width: 24%;
+        cursor: pointer;
+        margin: 30px 0 20px 0;
         &:hover{
-            border: 1px solid grey;
+            border: 1px solid rgb(170, 162, 162);
         }
         .freeShippingContainer{
             text-align: right;
-            
-            
-            width: 42%;
+            width: 100%;    
+            position: sticky;     
             .freeShipping{
+                width: 36%;
                 font-size: 11.5px;
                 background-color: black;
                 color: white;
-            padding: 4px 10px 4px 5px;
+                padding: 4px 10px 4px 5px;
+                position: absolute;
+                right: 0;
             }
         }
         .imageContainer{
+            margin: 17px 0 15px 0;
             img{
                 width: 100%;
             }
         }
+        .productDetailContainer{
+            .productTitle{
+                height: 40px;
+                text-align: center;
+                width: 92%;
+                font-size: 20px;
+                font-weight: 500;
+                padding: 10px;
+            }
+            .orangeBorder{
+                width: 20%;
+                margin: 0 auto;
+                height: 2px;
+                background-color: orange;
+            }
+            .priceContainer{
+                text-align: center;
+                margin: 15px;
+                .dollarSign{
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin-right: 5px;
+                }
+                .price{
+                    font-size: 20px;
+                    font-weight: 900;
+                }
+            }
+        }
+        .addToCartContainer{
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: 550;
+            background: black;
+            margin: 0 7px 20px 7px;
+            a{
+              text-decoration: none;
+              color: white;
+            }
+            &:hover{
+                background: #e6bd08;
+            }
+          }
     }
 }

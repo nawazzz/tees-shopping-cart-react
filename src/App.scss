@@ -73,7 +73,7 @@ table {
 		margin: 0 auto;
 		padding: 20px;
 		.sortButtonsContainer{
-			width: 17%;
+			width: 18%;
 			.sizeSelectionContainer{
 				display: flex;
 				flex-wrap: wrap;
@@ -98,13 +98,13 @@ table {
 				}
 			}
 		.itemsAndOrderDropdownContainer{
-			width: 83%;
+			width: 82%;
 			.orderDropdownContainer{
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
 				.dropdownContainer{
-					width: 35%;
+					width: 27%;
 					display: flex;
 					justify-content: space-between;
 				}

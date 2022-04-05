@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.scss';
 import Cards from './Cards';
+import Cart from './Cart';
 
 import image from './cart.jpg';
 import imageOne from './pics/image-1.jpg'
@@ -27,6 +28,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isCartOpen: false,
       itemDetails: [
         {title: "Cat Tee Grey T-Shirt",
          price: 13.25,
@@ -155,11 +157,17 @@ class App extends React.Component {
     }
   }
 
+  handleCartPage = (event) => {
+    this.setState({
+      isCartOpen: !this.state.isCartOpen
+    }, () => {console.log(this.state.isCartOpen)})
+  }
+
   render() {
     return (
       <div className="mainContainer">
-        <div className='cartIconContainer'>
-          <img src={image}/>
+        <div className='cartIconContainer' >
+          <span onClick={this.handleCartPage} ><img src={image}/></span>
           <p className='counterIcon'>0</p>
         </div>
         <div style={{display: "flex"}} className='allItemsContainer'>
@@ -192,7 +200,9 @@ class App extends React.Component {
             <div className='itemsCardContainer'>
               <Cards 
                 itemDetails={this.state.itemDetails}
+                isCartOpen={this.state.isCartOpen}
               />
+              <Cart/>
             </div>
           </div>
         </div>
