@@ -1,0 +1,38 @@
+.mainCardContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    .cardContainer{
+        width: 24%;
+        &:hover{
+            border: 1px solid grey;
+        }
+        .freeShipping{
+    
+        }
+        .imageContainer{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+        .productDetailContainer{
+            .productTitle{
+                font-size: 20px;
+                font-weight: 900;
+            }
+            .orangeBorder{
+    
+            }
+            .priceContainer{
+                .dollarSign{
+                    
+                }
+            }
+        }
+        .addToCartContainer{
+    
+        }
+    }
+}
+
