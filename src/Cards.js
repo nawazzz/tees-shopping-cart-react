@@ -13,8 +13,8 @@ class Cards extends React.Component {
                     {this.props.itemDetails.map((elm, index) => {
                         return(
                             <div className="cardContainer">
-                                <div className="freeShipping">
-                                    <p>Free shipping</p>
+                                <div className="freeShippingContainer">
+                                    <p className="freeShipping">Free shipping</p>
                                 </div>
                                 <div className="imageContainer">
                                     <img src={imageOne} />

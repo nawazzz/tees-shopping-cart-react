@@ -69,10 +69,11 @@ table {
 		}
 	}
 	.allItemsContainer{
-		width: 80%;
+		width: 94%;
 		margin: 0 auto;
+		padding: 20px;
 		.sortButtonsContainer{
-			width: 20%;
+			width: 17%;
 			.sizeSelectionContainer{
 				display: flex;
 				flex-wrap: wrap;
@@ -97,7 +98,7 @@ table {
 				}
 			}
 		.itemsAndOrderDropdownContainer{
-			width: 80%;
+			width: 83%;
 			.orderDropdownContainer{
 				width: 100%;
 				display: flex;
