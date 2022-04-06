@@ -1,0 +1,38 @@
+.mainCartContainer{
+    width: 51%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    .cartLeftContainer{
+        width: 9%;
+        height: 8%;
+        background: black;
+        cursor: pointer;
+        .closeCartButton{
+            color: white;
+            font-size: 20px;
+            font-weight: 900;
+            text-align: center;
+            margin-top: 15px;
+        }
+    }
+    .cartRightContainer{
+        width: 91%;
+        height: 100%;
+        background: black; 
+        .cartHeaderContainer{
+            text-align: center;
+            h2{
+                color: white;
+                font-size: 22px;
+                font-weight: 900;
+                margin-top: 38px;
+            }
+        }
+        .cartItemsContainer{
+
+        }
+    }
+}

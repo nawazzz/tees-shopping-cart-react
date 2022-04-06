@@ -163,14 +163,21 @@ class App extends React.Component {
     }, () => {console.log(this.state.isCartOpen)})
   }
 
+  handleCartClosure = () => {
+    this.setState({
+      isCartOpen: false
+    })
+  }
   render() {
     return (
       <div>
         {this.state.isCartOpen?
         (<div className="mainContainer">
         <div className='cartIconContainer' >
-          <div onClick={this.handleCartPage} ><img src={image}/>
-          <p className='counterIcon'>0</p></div>
+          <div onClick={this.handleCartPage} >
+            <img src={image}/>
+            <p className='counterIcon'>0</p>
+          </div>
         </div>
         <div style={{display: "flex"}} className='allItemsContainer'>
           <div className='sortButtonsContainer'>
@@ -204,10 +211,10 @@ class App extends React.Component {
                 itemDetails={this.state.itemDetails}
                 isCartOpen={this.state.isCartOpen}
               />
-              <Cart/>
             </div>
           </div>
         </div>
+        <Cart isCartOpen={this.state.isCartOpen} handleCartClosure={this.handleCartClosure} />
       </div>
       ) : (
         <div className="mainContainer">
