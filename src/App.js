@@ -153,7 +153,8 @@ class App extends React.Component {
           image: { imageSeventeen },
           size: ["XS", "XL"]
         }
-      ]
+      ],
+      itemInCart: []
     }
   }
 
@@ -167,6 +168,16 @@ class App extends React.Component {
     this.setState({
       isCartOpen: false
     })
+  }
+  addProductElementInCart = (e) => {
+    const addItem = this.state.itemDetails.filter((elm, index) => {
+      if (elm.id === e.id) {
+        return true
+      }
+    })
+    this.setState({
+      itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem
+    }, () => {console.log(this.state.itemInCart)})
   }
   render() {
     return (
@@ -210,11 +221,15 @@ class App extends React.Component {
               <Cards 
                 itemDetails={this.state.itemDetails}
                 isCartOpen={this.state.isCartOpen}
+                addProductElementInCart={this.addProductElementInCart}
               />
             </div>
           </div>
         </div>
-        <Cart isCartOpen={this.state.isCartOpen} handleCartClosure={this.handleCartClosure} />
+        <Cart isCartOpen={this.state.isCartOpen} 
+          handleCartClosure={this.handleCartClosure} 
+          itemInCart={this.state.itemInCart}
+        />
       </div>
       ) : (
         <div className="mainContainer">
@@ -253,6 +268,7 @@ class App extends React.Component {
               <Cards 
                 itemDetails={this.state.itemDetails}
                 isCartOpen={this.state.isCartOpen}
+                addProductElementInCart={this.addProductElementInCart}
               />
             </div>
           </div>
