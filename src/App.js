@@ -165,10 +165,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="mainContainer">
+      <div>
+        {this.state.isCartOpen?
+        (<div className="mainContainer">
         <div className='cartIconContainer' >
-          <span onClick={this.handleCartPage} ><img src={image}/></span>
-          <p className='counterIcon'>0</p>
+          <div onClick={this.handleCartPage} ><img src={image}/>
+          <p className='counterIcon'>0</p></div>
         </div>
         <div style={{display: "flex"}} className='allItemsContainer'>
           <div className='sortButtonsContainer'>
@@ -206,6 +208,51 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+      </div>
+      ) : (
+        <div className="mainContainer">
+        <div className='cartIconContainer' >
+          <span onClick={this.handleCartPage} ><img src={image}/></span>
+          <p className='counterIcon'>0</p>
+        </div>
+        <div style={{display: "flex"}} className='allItemsContainer'>
+          <div className='sortButtonsContainer'>
+              <div>
+                <p>Sizes:</p>
+              </div>
+              <div className='sizeSelectionContainer'>
+                <p className='selectSeize'>S</p>
+                <p className='selectSeize'>XS</p>
+                <p className='selectSeize'>M</p>
+                <p className='selectSeize'>L</p>
+                <p className='selectSeize'>XL</p>
+                <p className='selectSeize'>XXL</p>
+                <p className='selectSeize'>ML</p>
+              </div>
+          </div>
+          <div className='itemsAndOrderDropdownContainer'>
+            <div className='orderDropdownContainer'>
+              <p>17 Product(s) found</p>
+              <div className='dropdownContainer'>
+                <span>Order By:  </span>
+                <select>
+                  <option>Select</option>
+                  <option>Highest to Lowest</option>
+                  <option>Lowest to Highest</option>
+                </select>
+              </div>
+            </div>
+            <div className='itemsCardContainer'>
+              <Cards 
+                itemDetails={this.state.itemDetails}
+                isCartOpen={this.state.isCartOpen}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      )
+      }
       </div>
     );
   }
