@@ -171,6 +171,7 @@ class App extends React.Component {
   }
   addProductElementInCart = (e) => {
     const addItem = this.state.itemDetails.filter((elm, index) => {
+      // if (elm.includes(e.id)) {return}
       if (elm.id === e.id) {
         return true
       }

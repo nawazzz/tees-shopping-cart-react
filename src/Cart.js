@@ -34,6 +34,17 @@ class Cart extends React.Component {
                             )
                         })}
                     </div>
+                    <div className="checkoutContainerInCart">
+                        <div className="subtotalContainerInCart">
+                            <h6 className="subtotalHeading">SUBTOTAL
+
+                            </h6>
+                            <p className="dollarSign">$ {this.props.cartSubtotal}</p>
+                        </div>
+                        <div className="checkoutHeadingContainer">
+                            <h3>CHECKOUT</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
