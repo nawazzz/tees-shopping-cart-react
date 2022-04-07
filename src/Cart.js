@@ -14,7 +14,7 @@ class Cart extends React.Component {
                         <h2>Cart</h2>
                         <span className='cartCounterIcon'>0</span>
                     </div>
-                    <div>
+                    <div style={{marginBottom: "20px", marginTop: "20px"}}>
                         {this.props.itemInCart && this.props.itemInCart.map((elm, index) => {
                             return(
                                 <div className="cartItemsContainer">
@@ -34,18 +34,19 @@ class Cart extends React.Component {
                             )
                         })}
                     </div>
-                    <div className="checkoutContainerInCart">
+                    
+                </div>
+                <div className="checkoutContainerInCart">
+                        
                         <div className="subtotalContainerInCart">
-                            <h6 className="subtotalHeading">SUBTOTAL
-
-                            </h6>
+                            <h6 className="subtotalHeading">SUBTOTAL</h6>
                             <p className="dollarSign">$ {this.props.cartSubtotal}</p>
                         </div>
                         <div className="checkoutHeadingContainer">
                             <h3>CHECKOUT</h3>
                         </div>
                     </div>
-                </div>
+
             </div>
         )
     }
