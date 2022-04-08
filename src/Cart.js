@@ -20,7 +20,7 @@ class Cart extends React.Component {
                                 <div className="cartItemsContainer">
                                     <div className="cartImageContainer">
                                         <div className="imageThumbnail">
-                                            <img src={imageOne}/>
+                                            <img src={elm.image}/>
                                         </div>
                                         <div className="cartItemTitle">
                                             <h5>{elm.title}</h5>

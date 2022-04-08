@@ -11,13 +11,15 @@ class Cards extends React.Component {
             <div>
                 <div className="mainCardContainer">
                     {this.props.itemDetails.map((elm, index) => {
+                        console.log(elm)
                         return(
+                            
                             <div className="cardContainer">
                                 <div className="freeShippingContainer">
                                     <p className="freeShipping">Free shipping</p>
                                 </div>
                                 <div className="imageContainer">
-                                    <img src={imageOne} />
+                                    <img src={elm.image} />
                                 </div>
                                 <div className="productDetailContainer">
                                     <div>

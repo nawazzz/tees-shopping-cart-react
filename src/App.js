@@ -5,22 +5,22 @@ import Cart from './Cart';
 
 import image from './cart.jpg';
 import imageOne from './pics/image-1.jpg'
-import imageTwo from './pics/image-1.jpg'
-import imageThree from './pics/image-1.jpg'
-import imageFour from './pics/image-1.jpg'
-import imageFive from './pics/image-1.jpg'
-import imageSix from './pics/image-1.jpg'
-import imageSeven from './pics/image-1.jpg'
-import imageEight from './pics/image-1.jpg'
-import imageNine from './pics/image-1.jpg'
-import imageTen from './pics/image-1.jpg'
-import imageEleven from './pics/image-1.jpg'
-import imageTwelve from './pics/image-1.jpg'
-import imageThirteen from './pics/image-1.jpg'
-import imageFourteen from './pics/image-1.jpg'
-import imageFifteen from './pics/image-1.jpg'
-import imageSixteen from './pics/image-1.jpg'
-import imageSeventeen from './pics/image-1.jpg'
+import imageTwo from './pics/image-2.jpg'
+import imageThree from './pics/image-3.jpg'
+import imageFour from './pics/image-4.jpg'
+import imageFive from './pics/image-5.jpg'
+import imageSix from './pics/image-6.jpg'
+import imageSeven from './pics/image-7.jpg'
+import imageEight from './pics/image-8.jpg'
+import imageNine from './pics/image-9.jpg'
+import imageTen from './pics/image-10.jpg'
+import imageEleven from './pics/image-11.jpg'
+import imageTwelve from './pics/image-12.jpg'
+import imageThirteen from './pics/image-13.jpg'
+import imageFourteen from './pics/image-14.jpg'
+import imageFifteen from './pics/image-15.jpg'
+import imageSixteen from './pics/image-16.jpg'
+import imageSeventeen from './pics/image-17.jpg'
 
 
 
@@ -33,7 +33,7 @@ class App extends React.Component {
         {title: "Cat Tee Grey T-Shirt",
          price: 13.25,
          id: Math.floor(Math.random()*90000) + 10000,
-         image: {imageOne},
+         image: imageOne,
          size: ["S", "M", "L"],
          quantity: 1
         },
@@ -41,7 +41,7 @@ class App extends React.Component {
           title: "Tso 3D Black T-Shirt",
           price: 18.7,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageTwo },
+          image: imageTwo,
           size: ["XL", "ML", "XXL"],
           quantity: 1
         },
@@ -49,7 +49,7 @@ class App extends React.Component {
           title: "Dark Thug Maroon T-Shirt",
           price: 29.45,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageThree },
+          image: imageThree,
           size: ["ML", "XS"],
           quantity: 1
         },
@@ -57,14 +57,14 @@ class App extends React.Component {
           title: "Tso 3D Short Sleeve T-Shirt A",
           price: 10.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageFour },
+          image: imageFour,
           size: ["XL", "ML"]
         },
         {
           title: "Red Pewdiepie Cool T-Shirt",
           price: 12.5,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageFive },
+          image: imageFive,
           size: ["XL", "XXL"],
           quantity: 1
         },
@@ -72,7 +72,7 @@ class App extends React.Component {
           title: "Sphynx Tie Dye Wine T-Shirt",
           price: 9.00,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageSix },
+          image: imageSix,
           size: ["XL"],
           quantity: 1
         },
@@ -80,83 +80,88 @@ class App extends React.Component {
           title: "Skuul",
           price: 14.00,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageSeven },
+          image: imageSeven,
           size: ["XXL"]
         },
         {
           title: "Crazy Monkey Grey",
           price: 134.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageEight },
+          image: imageEight,
           size: ["S", "M"]
         },
         {
           title: "Black Beard T-Shirt",
           price: 11.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageNine },
+          image: imageNine,
           size: ["S", "L"]
         },
         {
           title: "Cat Tee Black T-Shirt",
           price: 10.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageTen },
+          image: imageTen,
           size: ["M", "L"]
         },
         {
           title: "White DGK Script Tee",
           price: 14.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageEleven },
+          image: imageEleven,
           size: ["M", "XXL"]
         },
         {
           title: "Born On The Streets",
           price: 25.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageTwelve },
+          image: imageTwelve,
           size: ["M", "XXL", "XL"]
         },
         {
           title: "Sphynx Tie Dye Grey T-Shirt",
           price: 10.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageThirteen },
+          image: imageThirteen,
           size: ["M", "XS", "XL"]
         },
         {
           title: "Crazy Monkey Black T-Shirt",
           price: 22.5,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageFourteen },
+          image: imageFourteen,
           size: ["XS", "XL"]
         },
         {
           title: "Danger Knife Grey",
           price: 14.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageFifteen },
+          image: imageFifteen,
           size: ["XS", "XL"]
         },
         {
           title: "Short Sleeve T-Shirt",
           price: 75.00,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageSixteen },
+          image: imageSixteen,
           size: ["XS", "XL"]
         },
         {
           title: "White Pewdiepie Hot T-Shirt",
           price: 20.9,
           id: Math.floor(Math.random() * 90000) + 10000,
-          image: { imageSeventeen },
+          image: imageSeventeen,
           size: ["XS", "XL"]
         }
       ],
-      itemInCart: []
+      itemInCart: [],
+      cartSubtotal: 0
     }
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+
+  // }
 
   handleCartPage = (event) => {
     this.setState({
