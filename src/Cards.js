@@ -11,7 +11,6 @@ class Cards extends React.Component {
             <div>
                 <div className="mainCardContainer">
                     {this.props.itemDetails.map((elm, index) => {
-                        console.log(elm)
                         return(
                             
                             <div className="cardContainer">

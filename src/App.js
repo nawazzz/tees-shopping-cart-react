@@ -181,6 +181,7 @@ class App extends React.Component {
         return true
       }
     })
+    
     this.setState({
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem
     }, () => {console.log(this.state.itemInCart)})
@@ -190,10 +191,10 @@ class App extends React.Component {
       <div>
         {this.state.isCartOpen?
         (<div className="mainContainer">
-        <div className='cartIconContainer' >
-          <div onClick={this.handleCartPage} >
+        <div className='cartIconContainer' style={{display: "none"}}>
+          <div onClick={this.handleCartPage}>
             <img src={image}/>
-            <p className='counterIcon'>0</p>
+            <p className='counterIcon'>{this.state.itemInCart.length}</p>
           </div>
         </div>
         <div style={{display: "flex"}} className='allItemsContainer'>
@@ -241,7 +242,7 @@ class App extends React.Component {
         <div className="mainContainer">
         <div className='cartIconContainer' >
           <span onClick={this.handleCartPage} ><img src={image}/></span>
-          <p className='counterIcon'>0</p>
+          <p className='counterIcon'>{this.state.itemInCart? this.state.itemInCart.length : this.state.itemInCart.length}</p>
         </div>
         <div style={{display: "flex"}} className='allItemsContainer'>
           <div className='sortButtonsContainer'>

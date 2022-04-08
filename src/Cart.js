@@ -12,7 +12,7 @@ class Cart extends React.Component {
                 <div className="cartRightContainer">
                     <div className="cartHeaderContainer">
                         <h2>Cart</h2>
-                        <span className='cartCounterIcon'>0</span>
+                        <span className='cartCounterIcon'>{this.props.itemInCart.length}</span>
                     </div>
                     <div style={{marginBottom: "20px", marginTop: "20px"}}>
                         {this.props.itemInCart && this.props.itemInCart.map((elm, index) => {
