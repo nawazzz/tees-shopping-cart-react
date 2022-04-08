@@ -166,7 +166,7 @@ class App extends React.Component {
   handleCartPage = (event) => {
     this.setState({
       isCartOpen: !this.state.isCartOpen
-    }, () => {console.log(this.state.isCartOpen)})
+    })
   }
 
   handleCartClosure = () => {
@@ -181,11 +181,43 @@ class App extends React.Component {
         return true
       }
     })
-    
+    // const addQuantity = this.state.itemInCart && this.state.itemInCart.map((elm, index) => {
+    //   if (addItem[0].id === elm.id) {
+    //     elm.quantity = elm.quantity + 1
+    //     elm.price = elm.price * elm.quantity
+    //   }
+    //   return elm
+    // })
+    // console.log(addQuantity)
+    const cartTotal = this.state.itemInCart && this.state.itemInCart.forEach((elm, index) => {
+      elm.price++
+    })
+    // console.log(cartTotal)
     this.setState({
-      itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem
-    }, () => {console.log(this.state.itemInCart)})
+      itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
+      cartSubtotal: cartTotal
+    }
+    , () => {console.log(this.state.itemInCart)
+    })
   }
+
+  handleSort = (event) => {
+    const sortedItems = this.state.itemDetails.filter((elm, index) => {
+        return elm.size.includes(event.target.innerText)
+    })
+    this.setState({
+      itemDetails: sortedItems
+    }, () => {console.log(this.state.itemDetails)})
+  }
+  
+  sortFromHighest = (event) => {
+    console.log(event)
+  }
+
+  sortFromLowest = (event) => {
+    console.log(event)
+  }
+
   render() {
     return (
       <div>
@@ -214,13 +246,13 @@ class App extends React.Component {
           </div>
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
-              <p>17 Product(s) found</p>
+              <p>{this.state.itemDetails.length} Product(s) found</p>
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
                 <select>
                   <option>Select</option>
-                  <option>Highest to Lowest</option>
-                  <option>Lowest to Highest</option>
+                  <option onClick={this.sortFromHighest} >Highest to Lowest</option>
+                  <option onClick={this.sortFromLowest} >Lowest to Highest</option>
                 </select>
               </div>
             </div>
@@ -236,6 +268,7 @@ class App extends React.Component {
         <Cart isCartOpen={this.state.isCartOpen} 
           handleCartClosure={this.handleCartClosure} 
           itemInCart={this.state.itemInCart}
+          cartSubtotal={this.state.cartSubtotal}
         />
       </div>
       ) : (
@@ -250,13 +283,13 @@ class App extends React.Component {
                 <p>Sizes:</p>
               </div>
               <div className='sizeSelectionContainer'>
-                <p className='selectSeize'>S</p>
-                <p className='selectSeize'>XS</p>
-                <p className='selectSeize'>M</p>
-                <p className='selectSeize'>L</p>
-                <p className='selectSeize'>XL</p>
-                <p className='selectSeize'>XXL</p>
-                <p className='selectSeize'>ML</p>
+                <p className='selectSeize' onClick={this.handleSort} >S</p>
+                <p className='selectSeize' onClick={this.handleSort}>XS</p>
+                <p className='selectSeize' onClick={this.handleSort}>M</p>
+                <p className='selectSeize' onClick={this.handleSort}>L</p>
+                <p className='selectSeize' onClick={this.handleSort}>XL</p>
+                <p className='selectSeize' onClick={this.handleSort}>XXL</p>
+                <p className='selectSeize' onClick={this.handleSort}>ML</p>
               </div>
           </div>
           <div className='itemsAndOrderDropdownContainer'>
@@ -266,8 +299,8 @@ class App extends React.Component {
                 <span>Order By:  </span>
                 <select>
                   <option>Select</option>
-                  <option>Highest to Lowest</option>
-                  <option>Lowest to Highest</option>
+                  <option onClick={this.sortFromHighest} >Highest to Lowest</option>
+                  <option onClick={this.sortFromLowest} >Lowest to Highest</option>
                 </select>
               </div>
             </div>
