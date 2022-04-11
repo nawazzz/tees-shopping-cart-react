@@ -10,10 +10,10 @@ class Cards extends React.Component {
         return(
             <div>
                 <div className="mainCardContainer">
-                    {this.props.itemDetails.map((elm, index) => {
-                        return(
-                            
-                            <div className="cardContainer">
+                    {this.props.filteredArray.length > 0 ?
+                        this.props.filteredArray.map((elm,index) => {
+                            return(
+                                <div className="cardContainer">
                                 <div className="freeShippingContainer">
                                     <p className="freeShipping">Free shipping</p>
                                 </div>
@@ -34,9 +34,35 @@ class Cards extends React.Component {
                                     className="addToCartContainer">
                                     <a href="#">Add to cart</a>
                                 </div>
-                            </div>                                
-                        )
-                    })}
+                            </div>
+                            )
+                        }) : this.props.itemDetails.map((elm, index) => {
+                            return(
+                                <div className="cardContainer">
+                                <div className="freeShippingContainer">
+                                    <p className="freeShipping">Free shipping</p>
+                                </div>
+                                <div className="imageContainer">
+                                    <img src={elm.image} />
+                                </div>
+                                <div className="productDetailContainer">
+                                    <div>
+                                        <h5 className="productTitle">{elm.title}</h5>
+                                    </div>
+                                    <div className="orangeBorder">
+                                    </div>
+                                    <div className="priceContainer">
+                                        <span className="dollarSign">$</span><span className="price">{elm.price}</span>
+                                    </div>
+                                </div>
+                                <div onClick={() => this.props.addProductElementInCart(elm)}
+                                    className="addToCartContainer">
+                                    <a href="#">Add to cart</a>
+                                </div>
+                            </div>                                 
+                            )
+                        })
+                    }
                 </div>
             </div>
         )

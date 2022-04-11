@@ -155,13 +155,15 @@ class App extends React.Component {
         }
       ],
       itemInCart: [],
+      filteredArray: [],
       cartSubtotal: 0
     }
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.itemDetails)
+    console.log(this.state.filteredArray)
+  }
 
   handleCartPage = (event) => {
     this.setState({
@@ -189,26 +191,28 @@ class App extends React.Component {
     //   return elm
     // })
     // console.log(addQuantity)
-    let initialValue = 0
+    
     const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.price      
-    }, initialValue)
+    }, 0)
     console.log(cartTotal)
     this.setState({
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
-      cartSubtotal: cartTotal
+      cartSubtotal: cartTotal.toFixed(2)
     }
     , () => {console.log(this.state.itemInCart)
     })
   }
 
   handleSort = (event) => {
-    const sortedItems = this.state.itemDetails.filter((elm, index) => {
-        return elm.size.includes(event.target.innerText)
+    const sortedItems = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+        if (elm.size.includes(event.target.innerText)) {
+          return true
+        }
     })
     this.setState({
-      itemDetails: sortedItems
-    }, () => {console.log(this.state.itemDetails)})
+      filteredArray: this.state.filteredArray.concat(sortedItems)
+    })
   }
   
   sortWithPrice = (event) => {
@@ -230,9 +234,11 @@ class App extends React.Component {
         if (a.price > b.price) {return 1} else {return -1}
       })
     }
-    // if (event.target.value === "Select") {
-    //   sortedPrice = this.state.itemDetails
-    // }
+    if (event.target.value === "Select") {
+      sortedPrice = this.state.itemDetails.sort(function(a, b) { 
+        if (a.price === b.price) {return 1} else {return -1}
+      })
+    }
     this.setState({
       itemDetails: sortedPrice
     }, () => {console.log(this.state.itemDetails)})
@@ -256,13 +262,13 @@ class App extends React.Component {
                 <p>Sizes:</p>
               </div>
               <div className='sizeSelectionContainer'>
-                <p className='selectSeize'>S</p>
-                <p className='selectSeize'>XS</p>
-                <p className='selectSeize'>M</p>
-                <p className='selectSeize'>L</p>
-                <p className='selectSeize'>XL</p>
-                <p className='selectSeize'>XXL</p>
-                <p className='selectSeize'>ML</p>
+                <p className='selectSeize' onClick={this.handleSort}>S</p>
+                <p className='selectSeize' onClick={this.handleSort}>XS</p>
+                <p className='selectSeize' onClick={this.handleSort}>M</p>
+                <p className='selectSeize' onClick={this.handleSort}>L</p>
+                <p className='selectSeize' onClick={this.handleSort}>XL</p>
+                <p className='selectSeize' onClick={this.handleSort}>XXL</p>
+                <p className='selectSeize' onClick={this.handleSort}>ML</p>
               </div>
           </div>
           <div className='itemsAndOrderDropdownContainer'>
@@ -282,6 +288,7 @@ class App extends React.Component {
                 itemDetails={this.state.itemDetails}
                 isCartOpen={this.state.isCartOpen}
                 addProductElementInCart={this.addProductElementInCart}
+                filteredArray={this.state.filteredArray}
               />
             </div>
           </div>
@@ -330,6 +337,7 @@ class App extends React.Component {
                 itemDetails={this.state.itemDetails}
                 isCartOpen={this.state.isCartOpen}
                 addProductElementInCart={this.addProductElementInCart}
+                filteredArray={this.state.filteredArray}
               />
             </div>
           </div>
