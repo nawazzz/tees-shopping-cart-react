@@ -189,10 +189,11 @@ class App extends React.Component {
     //   return elm
     // })
     // console.log(addQuantity)
-    const cartTotal = this.state.itemInCart && this.state.itemInCart.forEach((elm, index) => {
-      elm.price++
-    })
-    // console.log(cartTotal)
+    let initialValue = 0
+    const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
+      return previousValue + currentValue.price      
+    }, initialValue)
+    console.log(cartTotal)
     this.setState({
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
       cartSubtotal: cartTotal
@@ -229,9 +230,9 @@ class App extends React.Component {
         if (a.price > b.price) {return 1} else {return -1}
       })
     }
-    if (event.target.value === "Select") {
-      sortedPrice = this.state.itemDetails
-    }
+    // if (event.target.value === "Select") {
+    //   sortedPrice = this.state.itemDetails
+    // }
     this.setState({
       itemDetails: sortedPrice
     }, () => {console.log(this.state.itemDetails)})
