@@ -220,13 +220,13 @@ class App extends React.Component {
     // console.log(sortedPriceArray)
     let sortedPrice = 0
     if (event.target.value === "Highest to Lowest") {
-      sortedPrice = this.state.sortedPriceArray.sort(function(a, b) {
-        return a - b;
+      sortedPrice = this.state.itemDetails.sort(function(a, b) { 
+        if (a.price < b.price) {return 1} else {return -1}
       })
     }
     if (event.target.value === "Lowest to Highest") {
-      sortedPrice = this.state.sortedPriceArray.sort(function(a, b) {
-        return a - b;
+      sortedPrice = this.state.itemDetails.sort(function(a, b) { 
+        if (a.price > b.price) {return 1} else {return -1}
       })
     }
     if (event.target.value === "Select") {
