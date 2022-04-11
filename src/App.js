@@ -210,13 +210,33 @@ class App extends React.Component {
     }, () => {console.log(this.state.itemDetails)})
   }
   
-  sortFromHighest = (event) => {
-    console.log(event)
+  sortWithPrice = (event) => {
+    // const sortedPriceArray = this.state.itemDetails.map((elm, index) => {
+    //   if (event.target.value === "Highest to Lowest") {
+    //     elm.price
+    //   }
+    //   return elm.price
+    // })
+    // console.log(sortedPriceArray)
+    let sortedPrice = 0
+    if (event.target.value === "Highest to Lowest") {
+      sortedPrice = this.state.sortedPriceArray.sort(function(a, b) {
+        return a - b;
+      })
+    }
+    if (event.target.value === "Lowest to Highest") {
+      sortedPrice = this.state.sortedPriceArray.sort(function(a, b) {
+        return a - b;
+      })
+    }
+    if (event.target.value === "Select") {
+      sortedPrice = this.state.itemDetails
+    }
+    this.setState({
+      itemDetails: sortedPrice
+    }, () => {console.log(this.state.itemDetails)})
   }
 
-  sortFromLowest = (event) => {
-    console.log(event)
-  }
 
   render() {
     return (
@@ -249,10 +269,10 @@ class App extends React.Component {
               <p>{this.state.itemDetails.length} Product(s) found</p>
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
-                <select>
+                <select onChange={this.sortWithPrice}>
                   <option>Select</option>
-                  <option onClick={this.sortFromHighest} >Highest to Lowest</option>
-                  <option onClick={this.sortFromLowest} >Lowest to Highest</option>
+                  <option>Highest to Lowest</option>
+                  <option>Lowest to Highest</option>
                 </select>
               </div>
             </div>
@@ -297,10 +317,10 @@ class App extends React.Component {
               <p>17 Product(s) found</p>
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
-                <select>
-                  <option>Select</option>
-                  <option onClick={this.sortFromHighest} >Highest to Lowest</option>
-                  <option onClick={this.sortFromLowest} >Lowest to Highest</option>
+                <select onChange={this.sortWithPrice}>
+                  <option >Select</option>
+                  <option>Highest to Lowest</option>
+                  <option>Lowest to Highest</option>
                 </select>
               </div>
             </div>
