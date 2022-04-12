@@ -162,7 +162,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.state.itemDetails)
-    console.log(this.state.filteredArray)
+    console.log(this.state)
   }
 
   handleCartPage = (event) => {
@@ -205,13 +205,19 @@ class App extends React.Component {
   }
 
   handleSort = (event) => {
-    const sortedItems = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-        if (elm.size.includes(event.target.innerText)) {
-          return true
-        }
+    const sortBySize = this.state.filteredArray && this.state.filteredArray.filter((elm, index) => {
+      if (!elm.size.includes(event.target.innerText)) {
+        return true
+      }
     })
+    const sortedSize = this.state.itemDetails.filter((elm, index) => {
+      if (elm.size.includes(event.target.innerText)) {
+              return true
+            }
+    })
+
     this.setState({
-      filteredArray: this.state.filteredArray.concat(sortedItems)
+      filteredArray: this.state.filteredArray.length?sortBySize : sortedSize
     })
   }
   
