@@ -156,12 +156,22 @@ class App extends React.Component {
       ],
       itemInCart: [],
       filteredArray: [],
-      cartSubtotal: 0
+      cartSubtotal: 0,
+      selectedSize: [
+        {size: "S", isOpen: false}, 
+        {size: "XS", isOpen: false}, 
+        {size: "M", isOpen: false}, 
+        {size: "L", isOpen: false},
+        {size: "XL", isOpen: false},
+        {size: "XXL", isOpen: false},
+        {size: "ML", isOpen: false}  
+      ]
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.state.itemDetails)
+
     console.log(this.state)
   }
 
@@ -195,7 +205,6 @@ class App extends React.Component {
     const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.price      
     }, 0)
-    console.log(cartTotal)
     this.setState({
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
       cartSubtotal: cartTotal.toFixed(2)
@@ -203,27 +212,31 @@ class App extends React.Component {
     , () => {console.log(this.state.itemInCart)
     })
   }
-// // Upon clicking on size button:
-// - push that item in filtered array
-// - if the item already exist in filtered array, remove that item and render other items that are already present in filtered array.
-// - If there are no other items available in filtered array, render all items array
 
-// - First check if the clicked size item already present in filtered array, if yes then delete it from filtered array, if no then add it.
+
   handleSort = (event) => {
-    const sortBySize = this.state.filteredArray && this.state.filteredArray.filter((elm, index) => {
-      if (!elm.size.includes(event.target.innerText)) {
-        return true
+    // const sortBySize = this.state.filteredArray && this.state.filteredArray.filter((elm, index) => {
+    //   if (!elm.size.includes(event.target.innerText)) {
+    //     return true
+    //   }
+    // })
+    // const sortedSize = this.state.itemDetails.filter((elm, index) => {
+    //   if (elm.size.includes(event.target.innerText)) {
+    //           return true
+    //         }
+    // })
+    // console.log(event)
+    const xyz = this.state.selectedSize.forEach((elm, index) => {
+      if (event.target.innerText === elm.size) {
+          elm.isOpen = true
       }
-    })
-    const sortedSize = this.state.itemDetails.filter((elm, index) => {
-      if (elm.size.includes(event.target.innerText)) {
-              return true
-            }
+      return elm 
     })
 
-    this.setState({
-      filteredArray: this.state.filteredArray.length?sortBySize : sortedSize
-    })
+    // this.setState({
+    //   selectedSize: sizeClicked
+    //   // filteredArray: this.state.filteredArray.length?sortBySize : sortedSize
+    // })
   }
   
   sortWithPrice = (event) => {
@@ -246,9 +259,10 @@ class App extends React.Component {
       })
     }
     if (event.target.value === "Select") {
-      sortedPrice = this.state.itemDetails.sort(function(a, b) { 
-        if (a.price === b.price) {return 1} else {return -1}
-      })
+      sortedPrice = this.state.itemDetails
+      // .sort(function(a, b) { 
+      //   if (a.price === b.price) {return 1} else {return -1}
+      // })
     }
     this.setState({
       itemDetails: sortedPrice
