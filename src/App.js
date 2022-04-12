@@ -203,7 +203,12 @@ class App extends React.Component {
     , () => {console.log(this.state.itemInCart)
     })
   }
+// // Upon clicking on size button:
+// - push that item in filtered array
+// - if the item already exist in filtered array, remove that item and render other items that are already present in filtered array.
+// - If there are no other items available in filtered array, render all items array
 
+// - First check if the clicked size item already present in filtered array, if yes then delete it from filtered array, if no then add it.
   handleSort = (event) => {
     const sortBySize = this.state.filteredArray && this.state.filteredArray.filter((elm, index) => {
       if (!elm.size.includes(event.target.innerText)) {
@@ -279,7 +284,7 @@ class App extends React.Component {
           </div>
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
-              <p>{this.state.itemDetails.length} Product(s) found</p>
+              <p>{this.state.filteredArray.length? this.state.filteredArray.length: this.state.itemDetails.length} Product(s) found</p>
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
                 <select onChange={this.sortWithPrice}>
@@ -328,7 +333,7 @@ class App extends React.Component {
           </div>
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
-              <p>17 Product(s) found</p>
+              <p>{this.state.filteredArray.length? this.state.filteredArray.length: this.state.itemDetails.length} Product(s) found</p>
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
                 <select onChange={this.sortWithPrice}>
