@@ -158,13 +158,6 @@ class App extends React.Component {
       filteredArray: [],
       cartSubtotal: 0,
       selectedSize: [
-        {size: "S", isOpen: false}, 
-        {size: "XS", isOpen: false}, 
-        {size: "M", isOpen: false}, 
-        {size: "L", isOpen: false},
-        {size: "XL", isOpen: false},
-        {size: "XXL", isOpen: false},
-        {size: "ML", isOpen: false}  
       ]
     }
   }
@@ -172,7 +165,7 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.state.itemDetails)
 
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   handleCartPage = (event) => {
@@ -215,38 +208,28 @@ class App extends React.Component {
 
 
   handleSort = (event) => {
-    // const sortBySize = this.state.filteredArray && this.state.filteredArray.filter((elm, index) => {
-    //   if (!elm.size.includes(event.target.innerText)) {
-    //     return true
-    //   }
-    // })
-    // const sortedSize = this.state.itemDetails.filter((elm, index) => {
-    //   if (elm.size.includes(event.target.innerText)) {
-    //           return true
-    //         }
-    // })
-    // console.log(event)
-    const xyz = this.state.selectedSize.forEach((elm, index) => {
-      if (event.target.innerText === elm.size) {
-          elm.isOpen = true
+    if (event.target.textContent === "S" || event.target.textContent === "XS" || 
+         event.target.textContent === "M" || event.target.textContent === "L" || 
+         event.target.textContent === "XL" || event.target.textContent === "XXL" || 
+         event.target.textContent === "ML") {
+      this.setState({
+        selectedSize: this.state.selectedSize.length? this.state.selectedSize.concat([event.target.innerText]) : [event.target.innerText]
+      })  
+    const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+      for (let i = 0; i < this.state.selectedSize.length; i++) {
+        if (elm.size.includes(this.state.selectedSize[i])) {
+          return true
+        }
       }
-      return elm 
     })
-
-    // this.setState({
-    //   selectedSize: sizeClicked
-    //   // filteredArray: this.state.filteredArray.length?sortBySize : sortedSize
-    // })
+    console.log(savedSize)
+    this.setState({
+      filteredArray: savedSize
+    }, () => {console.log(this.state)})
   }
+}
   
   sortWithPrice = (event) => {
-    // const sortedPriceArray = this.state.itemDetails.map((elm, index) => {
-    //   if (event.target.value === "Highest to Lowest") {
-    //     elm.price
-    //   }
-    //   return elm.price
-    // })
-    // console.log(sortedPriceArray)
     let sortedPrice = 0
     if (event.target.value === "Highest to Lowest") {
       sortedPrice = this.state.itemDetails.sort(function(a, b) { 
