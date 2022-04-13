@@ -163,9 +163,24 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(this.state.itemDetails)
+    if (prevState.itemInCart.length !== this.state.itemInCart.length) {
+      this.setState({
+        cartSubtotal: this.state.itemInCart.reduce((acc, val) => acc + val.price, 0)
+      })
+    }
 
-    // console.log(this.state)
+    const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+      for (let i = 0; i < this.state.selectedSize.length; i++) {
+        if (elm.size.includes(this.state.selectedSize[i])) {
+          return true
+        }
+      }
+    })
+      if (this.state.selectedSize.length > 0) {
+        this.setState({
+          filteredArray: savedSize
+        })
+      } 
   }
 
   handleCartPage = (event) => {
@@ -214,18 +229,7 @@ class App extends React.Component {
          event.target.textContent === "ML") {
       this.setState({
         selectedSize: this.state.selectedSize.length? this.state.selectedSize.concat([event.target.innerText]) : [event.target.innerText]
-      })  
-    const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-      for (let i = 0; i < this.state.selectedSize.length; i++) {
-        if (elm.size.includes(this.state.selectedSize[i])) {
-          return true
-        }
-      }
-    })
-    console.log(savedSize)
-    this.setState({
-      filteredArray: savedSize
-    }, () => {console.log(this.state)})
+      }, () => {console.log(this.state.selectedSize)})  
   }
 }
   
