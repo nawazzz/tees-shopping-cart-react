@@ -169,18 +169,21 @@ class App extends React.Component {
       })
     }
 
-    const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-      for (let i = 0; i < this.state.selectedSize.length; i++) {
-        if (elm.size.includes(this.state.selectedSize[i])) {
-          return true
+     if (this.state.selectedSize.length>0) {
+      const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+        for (let i = 0; i < this.state.selectedSize.length; i++) {
+          if (elm.size.includes(this.state.selectedSize[i])) {
+            return true
+          }
         }
-      }
-    })
-      if (this.state.selectedSize.length > 0) {
-        this.setState({
-          filteredArray: savedSize
-        })
-      } 
+      })
+      console.log(savedSize)
+        if (this.state.selectedSize.length > 0) {
+          this.setState(() => {console.log(this.state)},{
+            filteredArray: savedSize
+          }, ()=> {console.log(this.state)})
+        } 
+    }
   }
 
   handleCartPage = (event) => {
