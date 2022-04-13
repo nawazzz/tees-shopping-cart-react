@@ -79,7 +79,13 @@
             .cartPriceContainer{
                 width: 25%;
                 text-align: center;
-                color: #e6bd08
+                color: #e6bd08;
+                display: flex;
+                justify-content: space-between;
+                .deleteFromCart{
+                    margin: 0 auto;
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -58,7 +58,8 @@ class App extends React.Component {
           price: 10.9,
           id: Math.floor(Math.random() * 90000) + 10000,
           image: imageFour,
-          size: ["XL", "ML"]
+          size: ["XL", "ML"],
+          quantity: 1
         },
         {
           title: "Red Pewdiepie Cool T-Shirt",
@@ -177,13 +178,24 @@ class App extends React.Component {
           }
         }
       })
-      console.log(savedSize)
-        if (this.state.selectedSize.length > 0) {
-          this.setState(() => {console.log(this.state)},{
-            filteredArray: savedSize
-          }, ()=> {console.log(this.state)})
-        } 
-    }
+        // if (this.state.selectedSize.length > 0) {
+        //   this.setState({
+        //     filteredArray: savedSize
+        //   })
+        // } 
+      }
+
+      // const removeDuplicateInCart = []
+      // for (let i = 0; i < this.state.itemInCart.length; i++) {
+      //   if (this.state.itemInCart[i + 1] === this.state.itemInCart[i]) {
+      //     removeDuplicateInCart.push(this.state.itemInCart[i])
+      //   }
+      // } 
+      // if (this.state.itemInCart.length > 0) {
+      //   this.setState({
+      //     itemInCart: removeDuplicateInCart
+      //   })
+      // }
   }
 
   handleCartPage = (event) => {
@@ -198,20 +210,24 @@ class App extends React.Component {
     })
   }
   addProductElementInCart = (e) => {
-    const addItem = this.state.itemDetails.filter((elm, index) => {
-      // if (elm.includes(e.id)) {return}
-      if (elm.id === e.id) {
-        return true
-      }
-    })
-    // const addQuantity = this.state.itemInCart && this.state.itemInCart.map((elm, index) => {
-    //   if (addItem[0].id === elm.id) {
-    //     elm.quantity = elm.quantity + 1
-    //     elm.price = elm.price * elm.quantity
+    // const addItem = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+    //   if (elm.id === e.id) {
+    //     return true
     //   }
-    //   return elm
     // })
-    // console.log(addQuantity)
+      const addItem = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
+        if (this.state.itemInCart.length > 0) {
+          this.state.itemInCart.map((item) => {
+            if ((item.id === e.id) && (elm.id === e.id)) {
+              item.quantity += 1
+              item.price = item.price * item.quantity 
+            }
+          })
+        }
+        if ((elm.id === e.id)) {
+          return true
+        }
+      })
     
     const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.price      
@@ -219,9 +235,9 @@ class App extends React.Component {
     this.setState({
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
       cartSubtotal: cartTotal.toFixed(2)
-    }
-    , () => {console.log(this.state.itemInCart)
     })
+
+    
   }
 
 
@@ -259,6 +275,16 @@ class App extends React.Component {
     }, () => {console.log(this.state.itemDetails)})
   }
 
+  deleteItemFromCart = (event) => {
+    const deleteFromCart = this.state.itemInCart.filter((elm, index) => {
+      if (elm.id !== event.id) {
+        return true
+      }
+    })
+    this.setState({
+      itemInCart: deleteFromCart
+    })
+  }
 
   render() {
     return (
@@ -312,6 +338,7 @@ class App extends React.Component {
           handleCartClosure={this.handleCartClosure} 
           itemInCart={this.state.itemInCart}
           cartSubtotal={this.state.cartSubtotal}
+          deleteItemFromCart={this.deleteItemFromCart}
         />
       </div>
       ) : (

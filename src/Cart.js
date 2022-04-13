@@ -24,11 +24,17 @@ class Cart extends React.Component {
                                         </div>
                                         <div className="cartItemTitle">
                                             <h5>{elm.title}</h5>
-                                            <p style={{textAlign: "left"}}>Quantity: </p>
+                                            <p style={{textAlign: "left"}}>Quantity: {elm.quantity}</p>
                                         </div>
                                     </div>
                                     <div className="cartPriceContainer">
-                                        <p><span>$</span>{elm.price}</p>
+                                        <p>
+                                            <span>$</span>{elm.price}
+                                        </p>
+                                        <span 
+                                            className="deleteFromCart"
+                                            onClick={() => this.props.deleteItemFromCart(elm)}    
+                                        >x</span>
                                     </div>
                                 </div>
                             )
