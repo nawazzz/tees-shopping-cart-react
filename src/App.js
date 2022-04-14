@@ -58,8 +58,7 @@ class App extends React.Component {
           price: 10.9,
           id: Math.floor(Math.random() * 90000) + 10000,
           image: imageFour,
-          size: ["XL", "ML"],
-          quantity: 1
+          size: ["XL", "ML"]
         },
         {
           title: "Red Pewdiepie Cool T-Shirt",
@@ -169,33 +168,7 @@ class App extends React.Component {
         cartSubtotal: this.state.itemInCart.reduce((acc, val) => acc + val.price, 0)
       })
     }
-
-     if (this.state.selectedSize.length>0) {
-      const savedSize = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-        for (let i = 0; i < this.state.selectedSize.length; i++) {
-          if (elm.size.includes(this.state.selectedSize[i])) {
-            return true
-          }
-        }
-      })
-        // if (this.state.selectedSize.length > 0) {
-        //   this.setState({
-        //     filteredArray: savedSize
-        //   })
-        // } 
-      }
-
-      // const removeDuplicateInCart = []
-      // for (let i = 0; i < this.state.itemInCart.length; i++) {
-      //   if (this.state.itemInCart[i + 1] === this.state.itemInCart[i]) {
-      //     removeDuplicateInCart.push(this.state.itemInCart[i])
-      //   }
-      // } 
-      // if (this.state.itemInCart.length > 0) {
-      //   this.setState({
-      //     itemInCart: removeDuplicateInCart
-      //   })
-      // }
+    console.log(this.state)
   }
 
   handleCartPage = (event) => {
@@ -210,24 +183,11 @@ class App extends React.Component {
     })
   }
   addProductElementInCart = (e) => {
-    // const addItem = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-    //   if (elm.id === e.id) {
-    //     return true
-    //   }
-    // })
-      const addItem = this.state.itemDetails && this.state.itemDetails.filter((elm, index) => {
-        if (this.state.itemInCart.length > 0) {
-          this.state.itemInCart.map((item) => {
-            if ((item.id === e.id) && (elm.id === e.id)) {
-              item.quantity += 1
-              item.price = item.price * item.quantity 
-            }
-          })
-        }
-        if ((elm.id === e.id)) {
-          return true
-        }
-      })
+    const addItem = this.state.itemDetails.filter((elm, index) => {
+      if (elm.id === e.id) {
+        return true
+      }
+    })
     
     const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.price      
@@ -236,19 +196,45 @@ class App extends React.Component {
       itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
       cartSubtotal: cartTotal.toFixed(2)
     })
-
-    
   }
+
+  getItemsFilteredBySize = (selectedSizeArr) => {
+    const savedSize = this.state.itemDetails.filter((elm, index) => {
+      for (let i = 0; i < selectedSizeArr.length; i++) {
+        if (elm.size.includes(selectedSizeArr[i])) {
+          return true
+        }
+      }
+    })
+    return savedSize;
+  } 
 
 
   handleSort = (event) => {
-    if (event.target.textContent === "S" || event.target.textContent === "XS" || 
-         event.target.textContent === "M" || event.target.textContent === "L" || 
-         event.target.textContent === "XL" || event.target.textContent === "XXL" || 
-         event.target.textContent === "ML") {
+    const sizeClicked = event.target.textContent
+    if (sizeClicked === "S" || sizeClicked === "XS" || 
+        sizeClicked === "M" || sizeClicked === "L" || 
+        sizeClicked === "XL" || sizeClicked === "XXL" || 
+        sizeClicked === "ML") {
+
+      const isSizeAlreadySelected = this.state.selectedSize.includes(event.target.textContent)
+
+      if (isSizeAlreadySelected) {
+        const newSelectedSizeArr = this.state.selectedSize.filter(size => size !== event.target.textContent);
+        this.setState({
+          selectedSize: newSelectedSizeArr,
+          filteredArray: this.getItemsFilteredBySize(newSelectedSizeArr)
+        })
+
+        return;
+      }
+
+      const newSelectedSizeArr = [...this.state.selectedSize, event.target.textContent];
+
       this.setState({
-        selectedSize: this.state.selectedSize.length? this.state.selectedSize.concat([event.target.innerText]) : [event.target.innerText]
-      }, () => {console.log(this.state.selectedSize)})  
+        selectedSize: newSelectedSizeArr,
+        filteredArray: this.getItemsFilteredBySize(newSelectedSizeArr)
+      })  
   }
 }
   
@@ -266,9 +252,6 @@ class App extends React.Component {
     }
     if (event.target.value === "Select") {
       sortedPrice = this.state.itemDetails
-      // .sort(function(a, b) { 
-      //   if (a.price === b.price) {return 1} else {return -1}
-      // })
     }
     this.setState({
       itemDetails: sortedPrice
@@ -293,23 +276,23 @@ class App extends React.Component {
         (<div className="mainContainer">
         <div className='cartIconContainer' style={{display: "none"}}>
           <div onClick={this.handleCartPage}>
-            <img src={image}/>
+            <img src={image} alt={"cart"}/>
             <p className='counterIcon'>{this.state.itemInCart.length}</p>
           </div>
         </div>
-        <div style={{display: "flex"}} className='allItemsContainer'>
+        <div className='allItemsContainer'>
           <div className='sortButtonsContainer'>
               <div>
-                <p>Sizes:</p>
+                <h6>Sizes:</h6>
               </div>
-              <div className='sizeSelectionContainer'>
-                <p className='selectSeize' onClick={this.handleSort}>S</p>
-                <p className='selectSeize' onClick={this.handleSort}>XS</p>
-                <p className='selectSeize' onClick={this.handleSort}>M</p>
-                <p className='selectSeize' onClick={this.handleSort}>L</p>
-                <p className='selectSeize' onClick={this.handleSort}>XL</p>
-                <p className='selectSeize' onClick={this.handleSort}>XXL</p>
-                <p className='selectSeize' onClick={this.handleSort}>ML</p>
+              <div onClick={this.handleSort} className='sizeSelectionContainer'>
+                  <p>S</p>
+                  <p>XS</p>
+                  <p>M</p>
+                  <p>L</p>
+                  <p>XL</p>
+                  <p>XXL</p>
+                  <p>ML</p>
               </div>
           </div>
           <div className='itemsAndOrderDropdownContainer'>
@@ -318,9 +301,8 @@ class App extends React.Component {
               <div className='dropdownContainer'>
                 <span>Order By:  </span>
                 <select onChange={this.sortWithPrice}>
-                  <option>Select</option>
-                  <option>Highest to Lowest</option>
-                  <option>Lowest to Highest</option>
+                  <option value={"Highest to Lowest"}/>
+                  <option value={"Lowest to Highest"}/>
                 </select>
               </div>
             </div>
@@ -350,16 +332,16 @@ class App extends React.Component {
         <div style={{display: "flex"}} className='allItemsContainer'>
           <div className='sortButtonsContainer'>
               <div>
-                <p>Sizes:</p>
+                <h6>Sizes:</h6>
               </div>
-              <div className='sizeSelectionContainer'>
-                <p className='selectSeize' onClick={this.handleSort} >S</p>
-                <p className='selectSeize' onClick={this.handleSort}>XS</p>
-                <p className='selectSeize' onClick={this.handleSort}>M</p>
-                <p className='selectSeize' onClick={this.handleSort}>L</p>
-                <p className='selectSeize' onClick={this.handleSort}>XL</p>
-                <p className='selectSeize' onClick={this.handleSort}>XXL</p>
-                <p className='selectSeize' onClick={this.handleSort}>ML</p>
+              <div className='sizeSelectionContainer' onClick={this.handleSort}>
+                <p>S</p>
+                <p>XS</p>
+                <p>M</p>
+                <p>L</p>
+                <p>XL</p>
+                <p>XXL</p>
+                <p>ML</p>
               </div>
           </div>
           <div className='itemsAndOrderDropdownContainer'>

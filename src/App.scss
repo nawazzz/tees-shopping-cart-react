@@ -71,6 +71,7 @@ table {
 		}
 	}
 	.allItemsContainer{
+		display: flex;
 		width: 94%;
 		margin: 0 auto;
 		padding: 20px;
@@ -79,11 +80,10 @@ table {
 			.sizeSelectionContainer{
 				display: flex;
 				flex-wrap: wrap;
-				.selectSeize {
+				 p{
 					width: 16%;
 					height: 20px;
 					margin: 6px 3px 4px 3px;
-					// border: 1px solid grey;
 					background-color: #d3d3d3;
 					border-radius: 50%;
 					text-align: center;
