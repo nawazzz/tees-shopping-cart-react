@@ -182,20 +182,21 @@ class App extends React.Component {
       isCartOpen: false
     })
   }
-  addProductElementInCart = (e) => {
-    const addItem = this.state.itemDetails.filter((elm, index) => {
-      if (elm.id === e.id) {
-        return true
-      }
-    })
-    
-    const cartTotal = this.state.itemInCart && this.state.itemInCart.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.price      
-    }, 0)
-    this.setState({
-      itemInCart: this.state.itemInCart? this.state.itemInCart.concat(addItem): addItem,
-      cartSubtotal: cartTotal.toFixed(2)
-    })
+  addProductElementInCart = (elm) => {
+    if (!this.state.itemInCart.includes(elm)) {
+      this.setState({
+        itemInCart: [...this.state.itemInCart, elm]
+      })
+    } else {
+      const changePrice = this.state.itemInCart.map((item) => {
+        item.quantity++
+        item.price = item.price * item.quantity
+        return item
+      })
+      this.setState({
+        itemInCart: changePrice
+      })
+    }
   }
 
   getItemsFilteredBySize = (selectedSizeArr) => {
@@ -319,7 +320,9 @@ class App extends React.Component {
         <Cart isCartOpen={this.state.isCartOpen} 
           handleCartClosure={this.handleCartClosure} 
           itemInCart={this.state.itemInCart}
-          cartSubtotal={this.state.cartSubtotal}
+          cartSubtotal={this.state.itemInCart.reduce((previousValue, currentValue) => {
+            return previousValue + currentValue.price      
+          }, 0)}
           deleteItemFromCart={this.deleteItemFromCart}
         />
       </div>
