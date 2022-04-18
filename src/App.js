@@ -2,6 +2,7 @@ import React from 'react'
 import './App.scss';
 import Cards from './Cards';
 import Cart from './Cart';
+import Size from './Size';
 
 import image from './cart.jpg';
 import imageOne from './pics/image-1.jpg'
@@ -156,6 +157,7 @@ class App extends React.Component {
       ],
       itemInCart: [],
       filteredArray: [],
+      sizeButton: ["S", "XS", "M", "L", "XL", "XXL", "ML"],
       cartSubtotal: 0,
       selectedSize: [
       ]
@@ -283,10 +285,14 @@ class App extends React.Component {
         </div>
         <div className='allItemsContainer'>
           <div className='sortButtonsContainer'>
-              <div>
+              {/* <div>
                 <h6>Sizes:</h6>
-              </div>
-              <div onClick={this.handleSort} className='sizeSelectionContainer'>
+              </div> */}
+              <Size
+                sizeButton={this.state.sizeButton}
+                handleSort={this.handleSort}
+              />
+              {/* <div onClick={this.handleSort} className='sizeSelectionContainer'>
                   <p>S</p>
                   <p>XS</p>
                   <p>M</p>
@@ -294,7 +300,7 @@ class App extends React.Component {
                   <p>XL</p>
                   <p>XXL</p>
                   <p>ML</p>
-              </div>
+              </div> */}
           </div>
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
@@ -333,20 +339,10 @@ class App extends React.Component {
           <p className='counterIcon'>{this.state.itemInCart? this.state.itemInCart.length : this.state.itemInCart.length}</p>
         </div>
         <div className='allItemsContainer'>
-          <div className='sortButtonsContainer'>
-              <div>
-                <h6>Sizes:</h6>
-              </div>
-              <div className='sizeSelectionContainer' onClick={this.handleSort}>
-                <button>S</button>
-                <button>XS</button>
-                <button>M</button>
-                <button>L</button>
-                <button>XL</button>
-                <button>XXL</button>
-                <button>ML</button>
-              </div>
-          </div>
+              <Size
+                sizeButton={this.state.sizeButton}
+                handleSort={this.handleSort}              
+              />
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
               <p>{this.state.filteredArray.length? this.state.filteredArray.length: this.state.itemDetails.length} Product(s) found</p>

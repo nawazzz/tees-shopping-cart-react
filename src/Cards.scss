@@ -47,9 +47,10 @@ table {
     display: flex;
     flex-wrap: wrap;
     .cardContainer{
-        width: 24%;
+        width: 21%;
+        padding: 10px;
         cursor: pointer;
-        margin: 30px 5px 20px 5px;
+        margin: 10px;
         &:hover{
             border: 1px solid rgb(170, 162, 162);
         }
