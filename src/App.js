@@ -332,19 +332,19 @@ class App extends React.Component {
           <span onClick={this.handleCartPage} ><img src={image}/></span>
           <p className='counterIcon'>{this.state.itemInCart? this.state.itemInCart.length : this.state.itemInCart.length}</p>
         </div>
-        <div style={{display: "flex"}} className='allItemsContainer'>
+        <div className='allItemsContainer'>
           <div className='sortButtonsContainer'>
               <div>
                 <h6>Sizes:</h6>
               </div>
               <div className='sizeSelectionContainer' onClick={this.handleSort}>
-                <p>S</p>
-                <p>XS</p>
-                <p>M</p>
-                <p>L</p>
-                <p>XL</p>
-                <p>XXL</p>
-                <p>ML</p>
+                <button>S</button>
+                <button>XS</button>
+                <button>M</button>
+                <button>L</button>
+                <button>XL</button>
+                <button>XXL</button>
+                <button>ML</button>
               </div>
           </div>
           <div className='itemsAndOrderDropdownContainer'>

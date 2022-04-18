@@ -72,29 +72,29 @@ table {
 	}
 	.allItemsContainer{
 		display: flex;
-		width: 94%;
-		margin: 0 auto;
-		padding: 20px;
+		width: 100%;
+		justify-content: space-around;
+		margin-top: 10px;
 		.sortButtonsContainer{
-			width: 18%;
+			width: 12%;
 			.sizeSelectionContainer{
 				display: flex;
 				flex-wrap: wrap;
-				 p{
-					width: 16%;
+				 button{
+					width: 30px;
 					height: 20px;
-					margin: 6px 3px 4px 3px;
+					margin: 10px;
 					background-color: #d3d3d3;
 					border-radius: 50%;
 					text-align: center;
 					font-size: 13px;
 					padding: 10px 4px 3px 4px;
 					cursor: pointer;
-					&:active{
-						background: black;
-					}
+					// &:active{
+						// background: black;
+					// }
 					&:hover{
-						border: 1px solid black;
+						 border: 1px solid black;
 						}
 					}
 				}
