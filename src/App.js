@@ -285,22 +285,10 @@ class App extends React.Component {
         </div>
         <div className='allItemsContainer'>
           <div className='sortButtonsContainer'>
-              {/* <div>
-                <h6>Sizes:</h6>
-              </div> */}
               <Size
                 sizeButton={this.state.sizeButton}
                 handleSort={this.handleSort}
               />
-              {/* <div onClick={this.handleSort} className='sizeSelectionContainer'>
-                  <p>S</p>
-                  <p>XS</p>
-                  <p>M</p>
-                  <p>L</p>
-                  <p>XL</p>
-                  <p>XXL</p>
-                  <p>ML</p>
-              </div> */}
           </div>
           <div className='itemsAndOrderDropdownContainer'>
             <div className='orderDropdownContainer'>
